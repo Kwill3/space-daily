@@ -8,87 +8,66 @@ class Rover extends Component {
     super(props);
     this.state = {
       roverChoice: 'curiosity',
-      timeChoice: 'sol',
+      timeChoice: 'all',
       solChoice: 'none',
       dateChoice: 'none',
       cameraChoice: 'all',
-      page: '1',
-      apiData: []
+      pageChoice: '1',
     }
   }
 
   handleFormSubmit = (e) => {
     e.preventDefault();
-    this.setState(
-      {
+    this.setState({
       roverChoice: e.target.elements.rover.value,
-      timeChoice: e.target.elements.time.value,
-      solChoice: e.target.elements.marsTime.value,
-      dateChoice: e.target.elements.earthTime.value,
-      cameraChoice: e.target.elements.camera.value,
-      }, 
-      () => this.apiCallFunction()
-    );
+      timeChoice: e.target.elements.time.value
+    });
   }
 
-  apiCallFunction = () => {
-    if (this.state.timeChoice === 'date') {
-      this.asyncDate();
-    } 
-    else if (this.state.timeChoice === 'sol') {
-      this.asyncSol();
-    } 
-    else {
-      this.asyncAll();
-    };
+  handleRover = (e) => {
+    // Receives input change from component and sets state
+    this.setState({
+      roverChoice: e
+    })
   }
 
-  asyncDate = async() => {
-    console.log('date')
-    const json = await fetch(`https://api.nasa.gov/mars-photos/api/v1/rovers/${this.state.roverChoice}/photos?earth_date=${this.state.dateChoice}&api_key=DEMO_KEY&camera=${this.state.cameraChoice}`).then(response => response.json());
-    console.log(json);
-    let arr = [];
-    for (let i = 0; i < json.photos.length; i++) {
-      arr.push([json.photos[i].sol, json.photos[i].earth_date, json.photos[i].camera.name, json.photos[i].rover, json.photos[i].img_src])
-    }
+  handleTime = (e) => {
+    // Receives input change from component and sets state
     this.setState({
-      apiData: arr
-    });
-  };
+      timeChoice: e
+    })
+  }
 
-  asyncSol = async() => {
-    console.log('sol')
-    const json = await fetch(`https://api.nasa.gov/mars-photos/api/v1/rovers/${this.state.roverChoice}/photos?sol=${this.state.solChoice}&api_key=DEMO_KEY&camera=${this.state.cameraChoice}`).then(response => response.json());
-    console.log(json);
-    let arr = [];
-    for (let i = 0; i < json.photos.length; i++) {
-      arr.push(json.photos[i].img_src)
-    }
+  handleSol = (e) => {
+    // Receives input change from subcomponent and sets state
     this.setState({
-      apiData: arr
-    });
-  };
+      solChoice: e
+    })
+  }
 
-  asyncAll = async() => {
-    console.log('all')
-    const json = await fetch(`https://api.nasa.gov/mars-photos/api/v1/rovers/${this.state.roverChoice}/photos?sol=none&api_key=DEMO_KEY&camera=${this.state.cameraChoice}`).then(response => response.json());
-    console.log(json);
-    let arr = [];
-    for (let i = 0; i < json.photos.length; i++) {
-      arr.push([json.photos[i].sol, json.photos[i].earth_date, json.photos[i].camera.name, json.photos[i].rover, json.photos[i].img_src])
-    }
+  handleDate = (e) => {
+    // Receives input change from subcomponent and sets state
     this.setState({
-      apiData: arr
-    });
-  };
+      dateChoice: e
+    })
+  }
+
+  handleCamera = (e) => {
+    // Receives input change from subcomponent and sets state
+    this.setState({
+      cameraChoice: e
+    })
+  }
 
   render() {
     return (
       <div>
         <h2>Rover - Mars Rover Photos</h2>
         <p>See images collected by NASA's Mars Rovers, Curiosity, Opportunity and Spirit. Choose which rover to see pictures from and search by the Earth date they were taken on or even by Sol (Martian day/rotation). Each rover also has several cameras onboard that you can filter the results upon.</p>
-        <RoverFilter formSubmit={this.handleFormSubmit}/>
-        <RoverImage handleImage={this.state.apiData}/>
+
+        <RoverFilter rover={this.state.roverChoice} time={this.state.timeChoice} onRoverChange={this.handleRover} onTimeChange={this.handleTime} onSolChange={this.handleSol} onDateChange={this.handleDate} onCameraChange={this.handleCamera} />
+
+        <RoverImage rover={this.state.roverChoice} time={this.state.timeChoice} sol={this.state.solChoice} date={this.state.dateChoice} camera={this.state.cameraChoice} page={this.state.pageChoice}/>
       </div>
     );
   }

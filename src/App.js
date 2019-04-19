@@ -22,14 +22,14 @@ class App extends Component {
   }
 
   // Fetches daily APOD data
-  componentDidMount = async() => {
-    const json = await fetch(APOD_API_URL).then(response => response.json());;
-    this.setState({
-      apodJson: json,
-      currentDate: json.date
-    })
-    console.log(json);
-  }
+  // componentDidMount = async() => {
+  //   const json = await fetch(APOD_API_URL).then(response => response.json());;
+  //   this.setState({
+  //     apodJson: json,
+  //     currentDate: json.date
+  //   })
+  //   console.log(json);
+  // }
 
   // Fetches new API data for APOD if a new date search is submitted
   handleChangeDate = e => {
