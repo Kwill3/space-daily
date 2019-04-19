@@ -11,8 +11,7 @@ class Rover extends Component {
       timeChoice: 'all',
       solChoice: 'none',
       dateChoice: 'none',
-      cameraChoice: 'all',
-      pageChoice: '1',
+      cameraChoice: 'all'
     }
   }
 
