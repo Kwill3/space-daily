@@ -9,7 +9,8 @@ class RoverImage extends Component {
       apiRover: [],
       apiCamera: [],
       apiSol: [],
-      apiDate: []
+      apiDate: [],
+      page: '1'
     }
   }
 
@@ -32,8 +33,13 @@ class RoverImage extends Component {
   handleApiCall = async(timeQuery) => {
     const json = await fetch(`https://api.nasa.gov/mars-photos/api/v1/rovers/${this.props.rover}/photos?${timeQuery}&camera=${this.props.camera}&api_key=DEMO_KEY`).then(response => response.json());
     console.log(json);
-    let arrUrl, arrRover, arrCamera, arrSol, arrDate = [];
+    let arrUrl = []
+    let arrRover = []
+    let arrCamera = []
+    let arrSol = []
+    let arrDate = []
 
+    // Push data from api into respective arrays
     for (let i = 0; i < json.photos.length; i++) {
       arrUrl.push(json.photos[i].img_src)
       arrRover.push(json.photos[i].rover.name)
@@ -41,6 +47,8 @@ class RoverImage extends Component {
       arrSol.push(json.photos[i].sol)
       arrDate.push(json.photos[i].earth_date)
     }
+
+    // Capture each set of data separately since React child cannot contain objects or nested arrays
     this.setState({
       apiUrl: arrUrl,
       apiRover: arrRover,
@@ -49,18 +57,18 @@ class RoverImage extends Component {
       apiDate: arrDate
     });
   }
-  
 
   render() {
-    const apiUrl = this.state.apiUrl;
-    const renderImages = apiUrl.map((i) => { 
+    // Define function zip that concatenates each element from each set into an array
+    const zip = (a1, a2, a3, a4, a5) => a1.map((x,i) => [x, a2[i], a3[i], a4[i], a5[i]])
+    // Map states of arrays into image elements
+    const renderImages = zip(this.state.apiUrl, this.state.apiRover, this.state.apiCamera, this.state.apiSol, this.state.apiDate).map((i) => { 
       return (
         <div>
-          <img src={i} alt="" width="600" height="400" />
-          <div className="desc">Add a description of the image here</div>
+          <img src={i[0]} alt="" width="600" height="400" />
+          <div className="desc">Rover: {i[1]} Camera: {i[2]} Sol: {i[3]} Date: {i[4]}</div>
         </div>
       )
-
     } )
 
     return (

@@ -1,51 +1,53 @@
 import React, { Component } from 'react';
 import './Apod.css';
 
+import ApodRender from './ApodRender';
+import ApodDateForm from './ApodDateForm';
+
+const APOD_API_URL='https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY';
+
 class Apod extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      apodJson: {},
+      apodPrev: '',
+      currentDate: '',
+    }
+  }
+
+  // Fetches daily APOD data
+  componentDidMount = async() => {
+    const json = await fetch(APOD_API_URL).then(response => response.json());;
+    this.setState({
+      apodJson: json,
+      currentDate: json.date
+    })
+    console.log(json);
+  }
+
+  // Fetches new API data for APOD if a new date search is submitted
+  handleChangeDate = e => {
+    e.preventDefault();
+    const newDate = e.target.elements.prevDate.value;
+    this.setState({
+      apodPrev: newDate
+    }, async() => {
+      const json = await fetch(`${APOD_API_URL}&date=${this.state.apodPrev}`).then(response => response.json());
+      this.setState({
+        apodJson: json
+      })
+      console.log(json);
+    })      
+  }
+  
   render() {
-    const apodData = this.props.handleApod;
-    let credits;
-
-    // Returns video type if daily APOD is of video media
-    const media = () => {
-      if (apodData.media_type === 'video') {
-        return (
-          <div className="video-container">
-          <iframe title="apod-video" width="853" height="480" src={apodData.url} frameBorder="0" allowFullScreen/>
-          </div>
-        )
-      } 
-      // Else returns an image type media
-      else {
-        return (
-          <img src={apodData.hdurl} alt="" />
-        )
-      }
-    }
-
-    // Credits original author, if available
-    if (apodData.hasOwnProperty('copyright')){
-      credits = apodData.copyright;
-    } 
-    // Else credit goes to public domain
-    else {
-      credits = 'Public Domain';
-    }
-
     return (
-      <div className='apod-wrapper'>
-        <h2>APOD - Astronomy Picture of the Day</h2>
-          <p>{apodData.date}</p>
-          <div>
-            {media()}
-            <p>{`Image Credits: ${credits}`}</p>
-          </div>
-          <div>
-            <h3>{apodData.title}</h3>
-            <p>{apodData.explanation}</p>
-          </div>
+      <div>
+        <ApodRender handleApod={this.state.apodJson}/>
+        <ApodDateForm changeDate={this.handleChangeDate} currDate={this.state.currentDate}/>
       </div>
-    );
+    )
   }
 }
 
