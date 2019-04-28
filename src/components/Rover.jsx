@@ -15,14 +15,6 @@ class Rover extends Component {
     }
   }
 
-  handleFormSubmit = (e) => {
-    e.preventDefault();
-    this.setState({
-      roverChoice: e.target.elements.rover.value,
-      timeChoice: e.target.elements.time.value
-    });
-  }
-
   handleRover = (e) => {
     // Receives input change from component and sets state
     this.setState({

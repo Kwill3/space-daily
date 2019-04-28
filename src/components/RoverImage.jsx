@@ -10,7 +10,9 @@ class RoverImage extends Component {
       apiCamera: [],
       apiSol: [],
       apiDate: [],
-      page: '1'
+      apiId: [],
+      currentPage: '1',
+      imagesPerPage: 10
     }
   }
 
@@ -30,14 +32,21 @@ class RoverImage extends Component {
     }
   }
 
+  handlePageClick = (e) => {
+    this.setState({
+      currentPage: Number(e.target.id)
+    });
+  }
+
   handleApiCall = async(timeQuery) => {
-    const json = await fetch(`https://api.nasa.gov/mars-photos/api/v1/rovers/${this.props.rover}/photos?${timeQuery}&camera=${this.props.camera}&api_key=DEMO_KEY`).then(response => response.json());
+    const json = await fetch(`https://api.nasa.gov/mars-photos/api/v1/rovers/${this.props.rover}/photos?${timeQuery}${this.props.camera}&api_key=DEMO_KEY`).then(response => response.json());
     console.log(json);
     let arrUrl = []
     let arrRover = []
     let arrCamera = []
     let arrSol = []
     let arrDate = []
+    let arrId = []
 
     // Push data from api into respective arrays
     for (let i = 0; i < json.photos.length; i++) {
@@ -46,6 +55,7 @@ class RoverImage extends Component {
       arrCamera.push(json.photos[i].camera.name)
       arrSol.push(json.photos[i].sol)
       arrDate.push(json.photos[i].earth_date)
+      arrId.push(json.photos[i].id)
     }
 
     // Capture each set of data separately since React child cannot contain objects or nested arrays
@@ -54,29 +64,63 @@ class RoverImage extends Component {
       apiRover: arrRover,
       apiCamera: arrCamera,
       apiSol: arrSol,
-      apiDate: arrDate
+      apiDate: arrDate,
+      apiId: arrId
     });
   }
 
   render() {
     // Define function zip that concatenates each element from each set into an array
-    const zip = (a1, a2, a3, a4, a5) => a1.map((x,i) => [x, a2[i], a3[i], a4[i], a5[i]])
-    // Map states of arrays into image elements
-    const renderImages = zip(this.state.apiUrl, this.state.apiRover, this.state.apiCamera, this.state.apiSol, this.state.apiDate).map((i) => { 
+    const zip = (a1, a2, a3, a4, a5, a6) => a1.map((x,i) => [x, a2[i], a3[i], a4[i], a5[i], a6[i]])
+    // Zip states of arrays into nested array
+    const zipImages = zip(this.state.apiUrl, this.state.apiRover, this.state.apiCamera, this.state.apiSol, this.state.apiDate, this.state.apiId)
+    
+    // Logic for displaying images
+    const {currentPage, imagesPerPage} = this.state;
+    const indexOfLastImage = currentPage * imagesPerPage;
+    const indexofFirstImage = indexOfLastImage - imagesPerPage;
+    const currentImages = zipImages.slice(indexofFirstImage,indexOfLastImage);
+
+    // Map nested array into image elements
+    const renderImages = currentImages.map((i) => { 
       return (
-        <div>
+        <div key={i[5]}>
           <img src={i[0]} alt="" width="600" height="400" />
           <div className="desc">Rover: {i[1]} Camera: {i[2]} Sol: {i[3]} Date: {i[4]}</div>
         </div>
       )
-    } )
+    })
+
+    // Logic for displaying page numbers
+    const pageNumbers = [];
+    for (let i = 1; i <= Math.ceil(zipImages.length / this.state.imagesPerPage); i++) {
+      pageNumbers.push(i);
+    }
+
+    const renderPageNumbers = pageNumbers.map(number => {
+      return (
+        <li
+          key={number}
+          id={number}
+          onClick={this.handlePageClick}
+        >
+          {number}
+        </li>
+      );
+    });
 
     return (
       <div>
         <div>
           <button type="submit" onClick={this.handleClick}>Submit</button>
         </div>
+        <ul id="page-numbers">
+          {renderPageNumbers}
+        </ul>
         {renderImages}
+        <ul id="page-numbers">
+          {renderPageNumbers}
+        </ul>
       </div>
     );
   }
