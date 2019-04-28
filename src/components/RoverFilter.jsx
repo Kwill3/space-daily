@@ -49,7 +49,7 @@ class RoverFilter extends Component {
         </fieldset>
 
         <fieldset>
-          <legend>Please select the Earth date / Mars sol to filter photos up to:</legend>
+          <legend>Please select the Earth date / Mars sol :</legend>
           <div>
             <input type="radio" id="allTime"
             name="time" value="all" onChange={this.handleChangeTime} defaultChecked />
