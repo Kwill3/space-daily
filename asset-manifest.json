@@ -1,14 +1,14 @@
 {
-  "main.css": "/space-daily/static/css/main.75cf11e3.chunk.css",
-  "main.js": "/space-daily/static/js/main.934ab649.chunk.js",
-  "main.js.map": "/space-daily/static/js/main.934ab649.chunk.js.map",
+  "main.css": "/space-daily/static/css/main.4274c717.chunk.css",
+  "main.js": "/space-daily/static/js/main.2a4d7f01.chunk.js",
+  "main.js.map": "/space-daily/static/js/main.2a4d7f01.chunk.js.map",
   "runtime~main.js": "/space-daily/static/js/runtime~main.ed227987.js",
   "runtime~main.js.map": "/space-daily/static/js/runtime~main.ed227987.js.map",
   "static/js/2.a6753a6c.chunk.js": "/space-daily/static/js/2.a6753a6c.chunk.js",
   "static/js/2.a6753a6c.chunk.js.map": "/space-daily/static/js/2.a6753a6c.chunk.js.map",
   "index.html": "/space-daily/index.html",
-  "precache-manifest.57423f67a208274c4006384959a0a4e5.js": "/space-daily/precache-manifest.57423f67a208274c4006384959a0a4e5.js",
+  "precache-manifest.b19c9cbb527c9c5659633bb612bb0294.js": "/space-daily/precache-manifest.b19c9cbb527c9c5659633bb612bb0294.js",
   "service-worker.js": "/space-daily/service-worker.js",
-  "static/css/main.75cf11e3.chunk.css.map": "/space-daily/static/css/main.75cf11e3.chunk.css.map",
+  "static/css/main.4274c717.chunk.css.map": "/space-daily/static/css/main.4274c717.chunk.css.map",
   "static/media/solar-system.png": "/space-daily/static/media/solar-system.2542c1e8.png"
 }

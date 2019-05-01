@@ -8,19 +8,19 @@ self.__precacheManifest = [
     "url": "/space-daily/static/js/runtime~main.ed227987.js"
   },
   {
-    "revision": "c6586a13bafc13e3d0cc",
-    "url": "/space-daily/static/js/main.934ab649.chunk.js"
+    "revision": "ed115440ecd14936f29a",
+    "url": "/space-daily/static/js/main.2a4d7f01.chunk.js"
   },
   {
     "revision": "b53f597b6548bf8d656f",
     "url": "/space-daily/static/js/2.a6753a6c.chunk.js"
   },
   {
-    "revision": "c6586a13bafc13e3d0cc",
-    "url": "/space-daily/static/css/main.75cf11e3.chunk.css"
+    "revision": "ed115440ecd14936f29a",
+    "url": "/space-daily/static/css/main.4274c717.chunk.css"
   },
   {
-    "revision": "6dc38cdc7b8d9ff4cccc5f64cc59d48a",
+    "revision": "f5e55237b68da314b511325a23b17988",
     "url": "/space-daily/index.html"
   }
 ];
