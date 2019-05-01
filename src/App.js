@@ -17,9 +17,9 @@ class App extends Component {
             <div>
               <Header />
               <Switch>
-                <Route path='/' exact component={Home} />
-                <Route path='/apod' render={()=> <Apod />} />
-                <Route path='/rover' component={Rover} />
+                <Route path='/space-daily/' exact component={Home} />
+                <Route path='/space-daily/apod' render={()=> <Apod />} />
+                <Route path='/space-daily/rover' component={Rover} />
                 <Route component={Error} />
               </Switch>
             </div>

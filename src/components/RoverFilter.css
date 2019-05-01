@@ -1,17 +1,41 @@
 .time-box{
   padding: 5px;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
 }
 
 .time-box label{
-  padding-right: 20px;
+  margin: 5px 10px 5px 0;
+  padding-right: 15px;
+}
+
+.time-box input{
+  vertical-align: middle;
+  margin: 5px 10px 5px 0;
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid #ddd;
 }
 
 .rover-box{
   padding: 5px;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
 }
 
 .rover-box label{
-  padding-right: 20px;
+  margin: 5px 10px 5px 0;
+  padding-right: 15px;
+}
+
+.rover-box input{
+  vertical-align: middle;
+  margin: 5px 10px 5px 0;
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid #ddd;
 }
 
 .field-box{
@@ -20,4 +44,32 @@
 
 .form-box{
   margin-top: 30px;
+}
+
+@media (max-width: 800px) {
+  .time-box{
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .time-box input{
+    margin: 10px 0;
+  }
+
+  .time-box label{
+    font-size: 15px;
+  }
+  
+  .rover-box{
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .rover-box input{
+    margin: 10px 0;
+  }
+
+  .rover-box label{
+    font-size: 15px;
+  }
 }
