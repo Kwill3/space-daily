@@ -44,8 +44,9 @@ class Apod extends Component {
   render() {
     return (
       <div>
-        <ApodRender handleApod={this.state.apodJson}/>
         <ApodDateForm changeDate={this.handleChangeDate} currDate={this.state.currentDate}/>
+        <hr />
+        <ApodRender handleApod={this.state.apodJson}/>
       </div>
     )
   }

@@ -1,0 +1,23 @@
+.time-box{
+  padding: 5px;
+}
+
+.time-box label{
+  padding-right: 20px;
+}
+
+.rover-box{
+  padding: 5px;
+}
+
+.rover-box label{
+  padding-right: 20px;
+}
+
+.field-box{
+  margin-top: 18px;
+}
+
+.form-box{
+  margin-top: 30px;
+}

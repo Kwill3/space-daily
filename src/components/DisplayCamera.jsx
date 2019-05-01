@@ -13,7 +13,7 @@ class DisplayCamera extends Component {
       if (this.props.rover === 'curiosity') {
         // Returns Curiosity-specific cameras
         return (
-          <select onChange={this.handleCameraChange}>
+          <select onChange={this.handleCameraChange} className='curiosity-select'>
             <option value="default" disabled>Select a camera</option>
 
             <option value="">All Cameras</option>
@@ -37,7 +37,7 @@ class DisplayCamera extends Component {
       else {
         // Returns Spirit and Opportunity-specific cameras
         return (
-          <select onChange={this.handleCameraChange}>
+          <select onChange={this.handleCameraChange} className='spirit-select'>
             <option value="default" disabled>Select a camera</option>
 
             <option value="">All Cameras</option>

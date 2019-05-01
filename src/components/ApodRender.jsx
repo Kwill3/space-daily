@@ -18,7 +18,7 @@ class ApodRender extends Component {
       // Else returns an image type media
       else {
         return (
-          <img src={apodData.hdurl} alt="" />
+          <img src={apodData.hdurl} alt="" className='apod-img' />
         )
       }
     }
@@ -34,13 +34,13 @@ class ApodRender extends Component {
 
     return (
       <div className='apod-wrapper'>
-        <h2>APOD - Astronomy Picture of the Day</h2>
-          <p>{apodData.date}</p>
-          <div>
+        <h2 className='apod-header'>APOD - Astronomy Picture of the Day</h2>
+          <p className='apod-date'>{apodData.date}</p>
+          <div className='apod-credits'>
             {media()}
             <p>{`Image Credits: ${credits}`}</p>
           </div>
-          <div>
+          <div className='apod-content'>
             <h3>{apodData.title}</h3>
             <p>{apodData.explanation}</p>
           </div>
