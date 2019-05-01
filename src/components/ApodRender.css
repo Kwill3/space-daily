@@ -1,0 +1,33 @@
+.apod-img {
+  display: block;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.apod-header {
+  text-align: center;
+}
+
+.apod-wrapper {
+  font-size: 19px;
+  font-family: 'Lora', serif;
+}
+
+.apod-date {
+  display: block;
+  margin-left: 5%;
+  font-size: 15px;
+}
+
+.apod-content {
+  display: block;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.apod-credits {
+  text-align: center;
+  font-size: 15px;
+}

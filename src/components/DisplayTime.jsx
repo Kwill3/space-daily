@@ -41,7 +41,7 @@ class DisplayTime extends Component {
     
 
     return (
-      <div>
+      <div className='display-time-box'>
         {renderTime()}
       </div>
     );

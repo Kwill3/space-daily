@@ -30,10 +30,10 @@ class RoverFilter extends Component {
 
   render() {
     return (
-      <form>
-        <fieldset>
+      <form className='form-box'>
+        <fieldset className='field-box'>
           <legend>Please select the NASA Mars Rover:</legend>
-          <div>
+          <div className='rover-box'>
             <input type="radio" id="curiosity"
             name="rover" value="curiosity" onChange={this.handleChangeRover} defaultChecked />
             <label htmlFor="curiosity">Curiosity</label>
@@ -48,9 +48,9 @@ class RoverFilter extends Component {
           </div>
         </fieldset>
 
-        <fieldset>
+        <fieldset className='field-box'>
           <legend>Please select the Earth date / Mars sol :</legend>
-          <div>
+          <div className='time-box'>
             <input type="radio" id="allTime"
             name="time" value="all" onChange={this.handleChangeTime} defaultChecked />
             <label htmlFor="all">All photos</label>
@@ -66,7 +66,7 @@ class RoverFilter extends Component {
           <DisplayTime time={this.props.time} onDateChange={this.handleDate} onSolChange={this.handleSol}/>
         </fieldset>
 
-        <fieldset>
+        <fieldset className='field-box'>
           <legend>Please select the camera:</legend>
           <DisplayCamera rover={this.props.rover} onCameraChange={this.handleCamera}/>
         </fieldset>

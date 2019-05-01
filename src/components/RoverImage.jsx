@@ -12,7 +12,7 @@ class RoverImage extends Component {
       apiDate: [],
       apiId: [],
       currentPage: '1',
-      imagesPerPage: 10
+      imagesPerPage: 12
     }
   }
 
@@ -41,6 +41,7 @@ class RoverImage extends Component {
   handleApiCall = async(timeQuery) => {
     const json = await fetch(`https://api.nasa.gov/mars-photos/api/v1/rovers/${this.props.rover}/photos?${timeQuery}${this.props.camera}&api_key=DEMO_KEY`).then(response => response.json());
     console.log(json);
+    console.log(`https://api.nasa.gov/mars-photos/api/v1/rovers/${this.props.rover}/photos?${timeQuery}${this.props.camera}&api_key=DEMO_KEY`);
     let arrUrl = []
     let arrRover = []
     let arrCamera = []
@@ -84,9 +85,15 @@ class RoverImage extends Component {
     // Map nested array into image elements
     const renderImages = currentImages.map((i) => { 
       return (
-        <div key={i[5]}>
-          <img src={i[0]} alt="" width="600" height="400" />
-          <div className="desc">Rover: {i[1]} Camera: {i[2]} Sol: {i[3]} Date: {i[4]}</div>
+        <div className='gallery' key={i[5]}>
+          <a target="_blank" rel="noopener noreferrer" href={i[0]}>
+            <img src={i[0]} alt="" width="600" height="400" />
+          </a>
+          <div className="desc">Rover: {i[1]}
+            <br />Camera: {i[2]}
+            <br />Sol: {i[3]}
+            <br />Date: {i[4]}
+          </div>
         </div>
       )
     })
@@ -111,7 +118,7 @@ class RoverImage extends Component {
 
     return (
       <div>
-        <div>
+        <div className='submit-btn'>
           <button type="submit" onClick={this.handleClick}>Submit</button>
         </div>
         <ul id="page-numbers">

@@ -1,6 +1,8 @@
 #page-numbers {
   list-style: none;
   display: flex;
+  flex-flow: row wrap;
+  width: 90%;
 }
 
 #page-numbers > li {
@@ -8,4 +10,33 @@
   color: blue;
   user-select: none;
   cursor: pointer;
+  padding: 3px;
+  border: 1px  solid #000;
+}
+
+.submit-btn {
+  margin-top: 10px;
+}
+
+.gallery {
+  margin: 5px;
+  border: 1px solid rgb(155, 155, 155);
+  float: left;
+  width: 200px;
+  height: 300px;
+}
+
+.gallery:hover {
+  border: 1px solid #555;
+}
+
+.gallery img {
+  width: 100%;
+  height: auto;
+}
+
+.desc {
+  padding: 5px;
+  text-align: center;
+  font-size: 13px;
 }
