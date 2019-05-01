@@ -11,7 +11,7 @@ class ApodRender extends Component {
       if (apodData.media_type === 'video') {
         return (
           <div className="video-container">
-          <iframe title="apod-video" width="853" height="480" src={apodData.url} frameBorder="0" allowFullScreen/>
+            <iframe title="apod-video" src={apodData.url} allowFullScreen/>
           </div>
         )
       } 

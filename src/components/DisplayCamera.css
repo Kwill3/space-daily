@@ -1,9 +1,21 @@
 .curiosity-select{
+  margin: 5px;
   width: 350px;
-  margin: 5px 20px;
 }
 
 .spirit-select{
+  margin: 5px;
   width: 350px;
-  margin: 5px 20px;
+}
+
+@media (max-width: 800px) {
+  .curiosity-select{
+    margin: 5px;
+    width: 250px;
+  }
+  
+  .spirit-select{
+    margin: 5px;
+    width: 250px;
+  }
 }
