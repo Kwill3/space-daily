@@ -8,7 +8,7 @@ self.__precacheManifest = [
     "url": "/space-daily/static/js/runtime~main.ed227987.js"
   },
   {
-    "revision": "ed115440ecd14936f29a",
+    "revision": "d52469e179967052171c",
     "url": "/space-daily/static/js/main.2a4d7f01.chunk.js"
   },
   {
@@ -16,11 +16,11 @@ self.__precacheManifest = [
     "url": "/space-daily/static/js/2.a6753a6c.chunk.js"
   },
   {
-    "revision": "ed115440ecd14936f29a",
-    "url": "/space-daily/static/css/main.4274c717.chunk.css"
+    "revision": "d52469e179967052171c",
+    "url": "/space-daily/static/css/main.b3b1ed05.chunk.css"
   },
   {
-    "revision": "f5e55237b68da314b511325a23b17988",
+    "revision": "055f2f39bb129c474270ba38eb223450",
     "url": "/space-daily/index.html"
   }
 ];
